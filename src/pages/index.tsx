@@ -67,8 +67,8 @@ const AuthorProfileBioImage = css`
   z-index: 10;
   flex-shrink: 0;
   margin: 0 0 20px 0;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   box-shadow: rgba(255, 255, 255, 0.9) 0 0 0 3px;
 `;
 
@@ -114,7 +114,7 @@ interface AuthorTemplateProps {
 
 const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
   const author = props.data.authorYaml;
-  
+
   const edges = props.data.allMarkdownRemark.edges.filter(
     (edge) => {
       const isDraft = (edge.node.frontmatter.draft !== true ||
