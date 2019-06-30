@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Is learning the fondamental skill of the 21st Century
-author: Quentin Monmousseau
+author: Ashley Hollis
 tags: [Cognitive Science]
 image: img/think.jpg
 date: 2019-03-29T23:46:37.121Z
@@ -36,11 +36,11 @@ Think of your neural structure like your muscle mass. If you plan to grow and bu
 
 
 **Sleep:**
-A recent research conducted by   ?    shows that sleeping less than 
+A recent research conducted by   ?    shows that sleeping less than
 
 **Alimentation:**
 
-**Sports:** Free your mind, improve blood circulation and have a better overall mind 
+**Sports:** Free your mind, improve blood circulation and have a better overall mind
 
 
 ## V. Intelligence in the big data and web era

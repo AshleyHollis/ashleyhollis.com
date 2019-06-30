@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🇬🇧 An introduction to Trap Bar Deadlift: one deadlift to rule them all"
-author: Quentin Monmousseau
+author: Ashley Hollis
 tags: [NeuroSc. & Physiology]
 image: img/c.jpeg
 date: 2019-03-05T23:46:37.121Z
@@ -12,11 +12,11 @@ draft: false
 
 ---
 
-**[I. Deadlifts issues](#one)**  
+**[I. Deadlifts issues](#one)**
 
-**[II. Trap Bar Deadlifts](#two)**  
-• [a. Benefits](#two-one)  
-• [b. Exceptions](#two-two)  
+**[II. Trap Bar Deadlifts](#two)**
+• [a. Benefits](#two-one)
+• [b. Exceptions](#two-two)
 
 ---
 
@@ -44,8 +44,8 @@ First of all, Trap Bar Deadlift is <mark>**easier to learn and safer for a lot o
 
 It also allows you to have a <mark>**stronger and safer grip**</mark>. Indeed, Trap Bar Deadlifts don’t require a mixed grip - which is widely used to hold heavy barbells when performing straight bar deadlifts. This is preferable as mixed grip tends to cause muscle imbalances and isn’t comfortable at all for beginners.
 
-Last but not least, Trap Bar Deadlifts allow for <mark>**higher velocity and higher power output**</mark>, which tend to ease your progressive overload on the movement.  
-One of the reason is that it is proven to be easier to initialize the movement with your quads, which - if you didn't - will eventually allow you to lift more.  
+Last but not least, Trap Bar Deadlifts allow for <mark>**higher velocity and higher power output**</mark>, which tend to ease your progressive overload on the movement.
+One of the reason is that it is proven to be easier to initialize the movement with your quads, which - if you didn't - will eventually allow you to lift more.
 But above all, it is widely corroborated by many studies. In a [study conducted in 2011](https://www.ncbi.nlm.nih.gov/pubmed/21659894), subjects were asked to perform a 1RM with both Trap Bar and Straight Barbell. The results are respectively of *265 ± 41 kg vs. 245 ± 39 kg (with a p-value under a signifiance level of 0.05)*.
 
 In another study conducted on nineteen male powerlifters, subjects performed trials at maximum speed with loads of 10, 20, 30, 40, 50, 60, 70, and 80% of their predetermined 1-repetition maximum (1RM). Inverse dynamics and spatial tracking of the external resistance were used to quantify kinematic and kinetic variables.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 🇫🇷 Introduction aux Réseaux de Neurones – DLXT2 (Part. 1)
-author: Quentin Monmousseau
+author: Ashley Hollis
 tags: [Data Sc. & A.I.]
 image: images/header-articles.png
 date: 2019-05-11T23:46:37.121Z
@@ -12,15 +12,15 @@ draft: false
 
 ---
 
-### Sommaire  
-**I. Le fonctionnement d'un réseau de neurones**  
-• Forward Propagation  
-• Back Propagation  
+### Sommaire
+**I. Le fonctionnement d'un réseau de neurones**
+• Forward Propagation
+• Back Propagation
 
-**II. Implémentation avec Tensorflow 2.0**  
-• Forward Propagation  
-• Back Propagation  
-• Préparation du jeu de données et entraînement  
+**II. Implémentation avec Tensorflow 2.0**
+• Forward Propagation
+• Back Propagation
+• Préparation du jeu de données et entraînement
 
 **III. Pistes d'amélioration du modèle**
 
@@ -32,7 +32,7 @@ Les réseaux de neurones sont le nerf de la guerre du Deep Learning. Théorisés
 
 Pour comprendre comment tout cela fonctionne, commençons à l'échelle d'un neurone. Le processus se fait en deux grandes étapes, la <mark>**Forward Propagation**</mark> et la <mark>**Back Propagation**</mark>.
 
-### Forward Propagation :  
+### Forward Propagation :
 
 ![](images/neuralnet.png)
 ###### Réseau de neurones à layer unique
@@ -45,7 +45,7 @@ Pour comprendre comment tout cela fonctionne, commençons à l'échelle d'un neu
 
 4. Cette somme est finalement donnée à une *fonction d'activation* qui formate le résultat et permet de produire la prédiction en *output*.
 
-### Back Propagation :  
+### Back Propagation :
 5. Cette prédiction va être comparée à la valeur attendue pour déterminer une mesure de l'erreur, on parle de fonction de *loss*. De plus, la contribution à l'erreur de chaque neurone de la couche précédente va être déterminée.
 
 6. Une fonction *optimizer* (telle que la descente de gradient) va chercher à minimiser la *loss* calculée.
@@ -71,7 +71,7 @@ from tensorflow.keras.layers import Dense # pour ajouter des couches
 classifier = keras.Sequential()
 ```
 
-### Forward Propagation :  
+### Forward Propagation :
 
 Nous ajoutons les différents *layers* avec <code>.add(Dense())</code>. Il n'y a pas de règle fixe quant au nombre de layers et de neurones à l'intérieur, cela relève de l'intuition face à la problématique, de l'expérimentation ou encore de certains calculs possibles. Ici nous en générons trois. Le premier est notre Input Layer, il contient 9 neurones pour les 9 features de notre modèle. Le second est un Hidden Layer de 3 neurones. Le dernier est l'Output Layer, il contient un seul neurone capable de prédire la probabilité de succès.
 
@@ -85,7 +85,7 @@ classifier.add(Dense(units=1, activation='sigmoid')) # output layer
 - <code>units</code>: le nombre de neurones (dimension de la couche).
 - <code>activation</code>: la fonction d'activation souhaitée.
 
-### Back Propagation :  
+### Back Propagation :
 
 Configurons maintenant la *back propagation* avec la fonction <code>.compile</code>. Celle-ci peut prendre un grand nombre d'arguments mais nous nous contentons ici des trois nécessaires pour faire fonctionner le réseau.
 

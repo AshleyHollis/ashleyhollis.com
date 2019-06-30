@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Test
-author: Quentin Monmousseau
+author: Ashley Hollis
 tags: [Data Science, Cognitive Science, Sports Science]
 image: img/pullhard.jpg
 date: "2015-01-02T23:46:37.121Z"

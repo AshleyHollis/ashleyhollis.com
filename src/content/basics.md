@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The very basics you need if you wanna go Data Science
-author: Quentin Monmousseau
+author: Ashley Hollis
 tags: [Data Science]
 image: img/bigbang.jpg
 date: 2019-03-05T23:46:37.121Z

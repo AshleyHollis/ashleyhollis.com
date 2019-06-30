@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 🇬🇧 Is Learning the most important skill of the 21st Century
-author: Quentin Monmousseau
+author: Ashley Hollis
 tags: [NeuroSc. & Physiology]
 image: img/b.jpeg
 date: 2019-03-29T23:46:37.121Z
@@ -12,17 +12,17 @@ draft: false
 
 ---
 
-**[I. Get started](#one)**  
-• [a. No you're not too old](#one-one)  
-• [b. Hack your brain](#one-two)  
+**[I. Get started](#one)**
+• [a. No you're not too old](#one-one)
+• [b. Hack your brain](#one-two)
 
-**[II. Body analogy](#two)**  
-• [a. Brain behaves as a muscle](#two-one)  
-• [b. Mens sana in corpore sano](#two-two)  
+**[II. Body analogy](#two)**
+• [a. Brain behaves as a muscle](#two-one)
+• [b. Mens sana in corpore sano](#two-two)
 
-**[III. How to learn in the 21st Century](#three)**  
-• [a. Intelligence in the big data and web era](#three-one)  
-• [b. Focus on understanding the concepts...](#three-two)  
+**[III. How to learn in the 21st Century](#three)**
+• [a. Intelligence in the big data and web era](#three-one)
+• [b. Focus on understanding the concepts...](#three-two)
 • [c. ...but try to implement in a little project and assess your knowledge](#three-three)
 
 ---
@@ -53,8 +53,8 @@ To manage to get started, which seem to be the difficult part of the process, yo
 
 Think of your neural structure like your muscle mass. If you plan to grow and build an athletic body, working out for ten hours once a month won't work well. Building muscle mass requires short and effective workout every day, allowing you to learn motion patterns and to gradually overload your sessions. So building an effective neural structure requires this little work every day to build an appetite for learning, and to gradually get better at what you're studying.
 
-**The power of repetition and constancy**  
-When you're learning, what you want to do is study something. Study it hard by focusing intently. Then take a break or at least change your focus to something different for awhile. During this time of seeming relaxation, your brain's diffuse mode has a chance to work away in the background and help you out with your conceptual understanding.  
+**The power of repetition and constancy**
+When you're learning, what you want to do is study something. Study it hard by focusing intently. Then take a break or at least change your focus to something different for awhile. During this time of seeming relaxation, your brain's diffuse mode has a chance to work away in the background and help you out with your conceptual understanding.
 If you don't do this and try to learn by cramming, your knowledge base might end up confused and confusing.
 
 Also, research has shown that if you try to glue things into your memory by repeating something 20 times in one evening for example, it won't stick nearly as well as if you practice it the same number of times over several days. If you don't leave time for the mortar to dry, that is time for the synaptic connections to form and strengthen, you won't have a very reliable neuro-structure.
@@ -64,7 +64,7 @@ Also, research has shown that if you try to glue things into your memory by repe
 Recent research found that key neurons fire more slowly and weakly when you're tired. Consequently, your attention and concentration abilities decline and you fail both to get the work done and to handle new information.
 It is highly recommended to **sleep at least 7 hours a day** and to try to stick to your natural sleep pattern (you might have noticed that you're naturally tired at 22h for exemple, don't try to resist and enjoy your sleep !).
 
-Concerning your alimentation, you have to make sure you have enough water, carbs, proteins, unsaturated fats, and ensure you eat sufficient micronutriments (vitamins, minerals).  
+Concerning your alimentation, you have to make sure you have enough water, carbs, proteins, unsaturated fats, and ensure you eat sufficient micronutriments (vitamins, minerals).
 The most important micronutriments for your brain are *PhosphatidylSerine (PS)*, *Vitamin D3 and B12*, *Omega 3 (DHA/EPA)*, and *Carnitine*. There are some powerful aliment such as **mackerel** that will highly help you to get that nutriments.
 
 Finally, sport improves your overall blood circulation, including your blood supply to the brain. It also allows you to free your mind, letting what you recently learned work in the background, as we mentionned before. Moreover, take this little break can often let new ideas pop up to your mind. In this case, do not hesitate to quickly note them on your phone so you can remember.
@@ -94,5 +94,5 @@ It is also very interesting to learn with a tool, as you can try to implement wh
 
 That's why I would advice any people willing to trully get a concept to build something with it. And if you managed to build something, **try to write a little documentation to explain it and its underlying concepts**. It's often a good way to make sure you understood what you made and to force yourself to structure your tought in order to be understood!
 
-> Whatever is well conceived is clearly said, And the words to say it flow with ease.  
+> Whatever is well conceived is clearly said, And the words to say it flow with ease.
 > – Nicolas Boileau

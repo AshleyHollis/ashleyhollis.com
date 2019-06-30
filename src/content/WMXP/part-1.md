@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 🇫🇷 Introduction au Scraping, Crawling – WMXP (Part. 1)
-author: Quentin Monmousseau
+author: Ashley Hollis
 tags: [Data Sc. & A.I.]
 image: images/header-articles.png
 date: 2019-05-07T23:46:37.121Z
@@ -14,9 +14,9 @@ draft: false
 
 **— Sommaire**
 
-**[I. Introduction au Web Mining](#one)**  
-**[II. Le Scraping](#two)**  
-**[III. Le Crawling](#three)**  
+**[I. Introduction au Web Mining](#one)**
+**[II. Le Scraping](#two)**
+**[III. Le Crawling](#three)**
 
 ---
 
@@ -197,7 +197,7 @@ while len(queue):
         new_url = link.get('href')
 ```
 
-Les pages n'étant pas toujours structurées correctement, il faut éviter certaines erreurs qui pourraient dégrader la qualité de notre réseau.  
+Les pages n'étant pas toujours structurées correctement, il faut éviter certaines erreurs qui pourraient dégrader la qualité de notre réseau.
 On va sauter les balises dont le contenu pose problème : href inexistant, ancre interne (#) qui nous amènerait à revisiter la même page, lien vers un mail...
 
 ```python
@@ -244,7 +244,7 @@ nx.draw(graph, with_labels=False, node_size=10)
 
 ### Limites de la visualisation avec NetworkX
 
-La librairie *NetworkX* permet de faire de nombreux calculs statistiques utiles pour étudier le réseau. Toutefois, elle ne permet pas de le visualiser confortablement. Pour se faire, on lui préfère des outils tels que *Gephi* (un peu vieillot) ou *Manylines* (développé récemment par le MediaLab de SciencesPo Paris) par exemple.  
+La librairie *NetworkX* permet de faire de nombreux calculs statistiques utiles pour étudier le réseau. Toutefois, elle ne permet pas de le visualiser confortablement. Pour se faire, on lui préfère des outils tels que *Gephi* (un peu vieillot) ou *Manylines* (développé récemment par le MediaLab de SciencesPo Paris) par exemple.
 Pour analyser notre réseau à l'aide de ces outils, il est nécessaire de l'exporter au format .gexf.
 
 ```python

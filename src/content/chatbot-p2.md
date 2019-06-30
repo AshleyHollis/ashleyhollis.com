@@ -1,7 +1,7 @@
 ---
 layout: post
 title: An introduction to Natural Language Processing (NLP) by creating a chatbot
-author: Quentin Monmousseau
+author: Ashley Hollis
 tags: [Data Sc. & A.I.]
 image: img/neural.jpg
 date: 2019-03-29T23:46:37.121Z
