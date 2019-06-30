@@ -144,17 +144,11 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
             <li role="menuitem">
               <Link to="">Home</Link>
             </li>
-            <li role="menuitem">
-              <Link to="/tags/data-sc-a-i/">Data Sc. & A.I.</Link>
-            </li>
-            <li role="menuitem">
-              <Link to="/tags/neuro-sc-physiology/">NeuroSc. & Physiology</Link>
-            </li>
           </ul>
         </SiteNavLeft>
         <SiteNavRight>
           <SocialLinks>
-          {config.twitter && (
+            {config.twitter && (
               <a
                 css={SocialLink}
                 href={config.twitter}
@@ -184,9 +178,9 @@ class SiteNav extends React.Component<SiteNavProps, SiteNaveState> {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github/>
+                <Github />
               </a>
-            )}            
+            )}
           </SocialLinks>
           {config.showSubscribe && (
             <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
