@@ -9,7 +9,7 @@ import SubscribeForm from './SubscribeForm';
 
 const SubscribeFormSection = styled.section`
   margin: 1.5em 0;
-  padding: 6.5vw 7vw 7vw;
+  padding: 2vw 2vw 2vw;
   /* border: color(var(--whitegrey) l(+2%)) 1px solid; */
   border: ${lighten('0.02', colors.whitegrey)} 1px solid;
   text-align: center;
