@@ -74,7 +74,7 @@ export const SocialLink = css`
 
 export const SiteHeader = css`
   position: relative;
-  padding-top: 12px;
+  padding-top: 0px;
   padding-bottom: 12px;
   color: #fff;
   /* background: color(var(--darkgrey) l(-5%)) no-repeat center center; */

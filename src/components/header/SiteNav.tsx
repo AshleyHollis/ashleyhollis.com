@@ -28,6 +28,7 @@ const SiteNavStyles = css`
   overflow-y: hidden;
   height: 40px;
   font-size: 1.2rem;
+  background-color: black;
 `;
 
 const SiteNavLeft = styled.div`
