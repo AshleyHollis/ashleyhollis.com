@@ -99,7 +99,7 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
         )}
       </Helmet>
       <Wrapper>
-        <Header author={author} totalCount={totalCount}></Header>
+        <Header totalCount={totalCount}></Header>
         <main id="site-main" css={[SiteMain, outer]}>
           <div css={inner}>
             <div css={[PostFeed, PostFeedRaise]}>
