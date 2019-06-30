@@ -6,7 +6,7 @@ const PostFullFoot = styled.footer`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding: 3vw 0 6vw 0;
+  padding: 1vw 0 1vw 0;
   max-width: 840px;
 `;
 
