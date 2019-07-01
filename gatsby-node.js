@@ -9,15 +9,15 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // through `createNodeField` so that the fields still exist and GraphQL won't
   // trip up. An empty string is still required in replacement to `null`.
   switch (node.internal.type) {
-    case 'MarkdownRemark': {
-      const { permalink, layout, primaryTag } = node.frontmatter;
-      const { relativePath } = getNode(node.parent);
+    case 'ContentfulBlogPost': {
+      const { permalink, layout, primaryTag } = node;
+      // const { relativePath } = getNode(node.parent);
 
       let slug = permalink;
 
-      if (!slug) {
-        slug = `/${relativePath.replace('.md', '')}/`;
-      }
+      // if (!slug) {
+      //   slug = `/${relativePath.replace('.md', '')}/`;
+      // }
 
       // Used to generate URL to view this content.
       createNodeField({
@@ -47,49 +47,12 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     {
-      allMarkdownRemark(
-        limit: 2000
-        sort: { fields: [frontmatter___date], order: ASC }
-        filter: { frontmatter: { draft: { ne: true } } }
-      ) {
+      allContentfulBlogPost {
         edges {
           node {
-            excerpt
-            timeToRead
-            frontmatter {
-              title
-              tags
-              date
-              draft
-              image {
-                childImageSharp {
-                  fluid(maxWidth: 3720) {
-                    aspectRatio
-                    base64
-                    sizes
-                    src
-                    srcSet
-                  }
-                }
-              }
-              author {
-                id
-                bio
-                avatar {
-                  children {
-                    ... on ImageSharp {
-                      fixed(quality: 90) {
-                        src
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            fields {
-              layout
-              slug
-            }
+            id
+            slug
+            tags
           }
         }
       }
@@ -108,10 +71,14 @@ exports.createPages = async ({ graphql, actions }) => {
     throw new Error(result.errors);
   }
 
+  // if (result.errors) {
+  //   console.log("Error retrieving contentful data",      result.errors);
+  // }
+
   // Create post pages
-  const posts = result.data.allMarkdownRemark.edges;
+  const posts = result.data.allContentfulBlogPost.edges;
   posts.forEach(({ node }, index) => {
-    const { slug, layout } = node.fields;
+    const { slug, layout } = node;
     const prev = index === 0 ? null : posts[index - 1].node;
     const next = index === posts.length - 1 ? null : posts[index + 1].node;
 
@@ -132,7 +99,7 @@ exports.createPages = async ({ graphql, actions }) => {
         slug,
         prev,
         next,
-        primaryTag: node.frontmatter.tags ? node.frontmatter.tags[0] : '',
+        primaryTag: node.tags ? node.tags[0] : '',
       },
     });
   });
@@ -141,8 +108,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagTemplate = path.resolve('./src/templates/tags.tsx');
   const tags = _.uniq(
     _.flatten(
-      result.data.allMarkdownRemark.edges.map(edge => {
-        return _.castArray(_.get(edge, 'node.frontmatter.tags', []));
+      result.data.allContentfulBlogPost.edges.map(edge => {
+        return _.castArray(_.get(edge, 'node.tags', []));
       }),
     ),
   );

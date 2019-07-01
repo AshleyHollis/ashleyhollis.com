@@ -128,7 +128,7 @@ interface PageTemplateProps {
         fixed: any;
       };
     };
-    markdownRemark: {
+    allContentfulBlogPost: {
       html: string;
       htmlAst: any;
       excerpt: string;
@@ -161,12 +161,8 @@ interface PageTemplateProps {
       edges: {
         node: {
           timeToRead: number;
-          frontmatter: {
-            title: string;
-          };
-          fields: {
-            slug: string;
-          };
+          title: string;
+          slug: string;
         };
       }[];
     };
@@ -180,10 +176,7 @@ interface PageTemplateProps {
 export interface PageContext {
   excerpt: string;
   timeToRead: number;
-  fields: {
     slug: string;
-  };
-  frontmatter: {
     image: {
       childImageSharp: {
         fluid: any;
@@ -203,12 +196,11 @@ export interface PageContext {
           };
         }[];
       };
-    };
   };
 }
 
 const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
-  const post = props.data.markdownRemark;
+  const post = props.data.allContentfulBlogPost;
   let width = '';
   let height = '';
   if (post.frontmatter.image && post.frontmatter.image.childImageSharp) {
@@ -326,64 +318,39 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
 export default PageTemplate;
 
 export const query = graphql`
-  query($slug: String, $primaryTag: String) {
-    logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
+  query ($primaryTag: String) {
+    logo: file(relativePath: {eq: "img/ghost-logo.png"}) {
       childImageSharp {
         fixed {
           ...GatsbyImageSharpFixed
         }
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      htmlAst
-      excerpt
-      timeToRead
-      frontmatter {
-        title
-        userDate: date(formatString: "D MMMM YYYY")
-        date
-        tags
-        image {
-          childImageSharp {
-            fluid(maxWidth: 3720) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        author {
+    allContentfulBlogPost {
+      edges {
+        node {
           id
-          bio
-          avatar {
-            children {
-              ... on ImageSharp {
-                fixed(quality: 90) {
-                  ...GatsbyImageSharpFixed
-                }
-              }
+          slug
+          title
+          tags
+          image {
+            file {
+              url
             }
           }
         }
       }
     }
-    relatedPosts: allMarkdownRemark(
-      filter: { frontmatter: { tags: { in: [$primaryTag] }, draft: { ne: true } } }
-      limit: 3
-    ) {
+    relatedPosts: allContentfulBlogPost(filter: {tags: {in: [$primaryTag]}}, limit: 3) {
       totalCount
       edges {
         node {
           id
-          timeToRead
-          excerpt
-          frontmatter {
-            title
-          }
-          fields {
-            slug
-          }
+          title
+          slug
         }
       }
     }
   }
+
 `;

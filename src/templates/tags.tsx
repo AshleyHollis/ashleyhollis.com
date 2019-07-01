@@ -117,7 +117,7 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
           <div css={inner}>
             <div css={[PostFeed, PostFeedRaise]}>
               {edges.map(({ node }) => (
-                <PostCard key={node.fields.slug} post={node} />
+                <PostCard key={node.slug} post={node} />
               ))}
             </div>
           </div>
@@ -147,44 +147,21 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(
-      limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] }, draft: { ne: true } } }
+    allContentfulBlogPost(
+      limit: 2000      
+      filter: { tags: { in: [$tag] } }
     ) {
       totalCount
       edges {
         node {
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            tags
-            date
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1240) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          id
+          slug
+          title
+          tags
+          image {
+            file {
+              url
             }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fixed(quality: 90) {
-                      src
-                    }
-                  }
-                }
-              }
-            }
-          }
-          fields {
-            layout
-            slug
           }
         }
       }

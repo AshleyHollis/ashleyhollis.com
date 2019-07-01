@@ -79,5 +79,12 @@ module.exports = {
         siteSpeedSampleRate: 10,
       },
     },
+    {
+      resolve: 'gatsby-source-contentful',
+      options: {
+        spaceId: '',
+        accessToken: ''
+      }
+    },
   ],
 };

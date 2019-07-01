@@ -49,7 +49,7 @@ const ErrorLink = css`
 
 interface NotFoundTemplateProps {
   data: {
-    allMarkdownRemark: {
+    allContentfulBlogPost: {
       totalCount: number;
       edges: {
         node: PageContext;
@@ -59,7 +59,7 @@ interface NotFoundTemplateProps {
 }
 
 const NotFoundPage: React.FunctionComponent<NotFoundTemplateProps> = props => {
-  const { edges } = props.data.allMarkdownRemark;
+  const { edges } = props.data.allContentfulBlogPost;
 
   return (
     <IndexLayout>
@@ -86,7 +86,7 @@ const NotFoundPage: React.FunctionComponent<NotFoundTemplateProps> = props => {
           <div css={inner}>
             <div css={PostFeed}>
               {edges.map(({ node }) => (
-                <PostCard key={node.fields.slug} post={node} />
+                <PostCard key={node.slug} post={node} />
               ))}
             </div>
           </div>
@@ -100,39 +100,17 @@ export default NotFoundPage;
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(limit: 3, sort: { fields: [frontmatter___date], order: DESC }) {
+    allContentfulBlogPost(limit: 3) {
       edges {
         node {
-          timeToRead
-          frontmatter {
-            title
-            date
-            tags
-            image {
-              childImageSharp {
-                fluid(maxWidth: 3720) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          id
+          slug
+          title
+          tags
+          image {
+            file {
+              url
             }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fixed(quality: 90) {
-                      src
-                    }
-                  }
-                }
-              }
-            }
-          }
-          excerpt
-          fields {
-            layout
-            slug
           }
         }
       }
