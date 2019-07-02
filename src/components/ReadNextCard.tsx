@@ -150,12 +150,8 @@ export interface ReadNextProps {
     edges: {
       node: {
         timeToRead: number;
-        frontmatter: {
-          title: string;
-        };
-        fields: {
-          slug: string;
-        };
+        title: string;
+        slug: string;
       };
     }[];
   };
@@ -203,8 +199,8 @@ const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
             <ul>
               {props.relatedPosts.edges.map(n => {
                 return (
-                  <li key={n.node.frontmatter.title}>
-                    <Link to={n.node.fields.slug}>{n.node.frontmatter.title}</Link>
+                  <li key={n.node.title}>
+                    <Link to={n.node.slug}>{n.node.title}</Link>
                   </li>
                 );
               })}

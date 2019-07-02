@@ -199,29 +199,29 @@ export interface PostCardProps {
 const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
   return (
     <article
-      className={`post-card ${!post.frontmatter.image ? 'no-image' : ''}`}
+      className={`post-card ${!post.image ? 'no-image' : ''}`}
       css={PostCardStyles}
     >
-      {post.frontmatter.image && (
-        <Link className="post-card-image-link" css={PostCardImageLink} to={post.fields.slug}>
+      {post.image && (
+        <Link className="post-card-image-link" css={PostCardImageLink} to={post.slug}>
           <PostCardImage className="post-card-image">
-            {post.frontmatter.image &&
-              post.frontmatter.image.childImageSharp &&
-              post.frontmatter.image.childImageSharp.fluid && (
+            {post.image &&
+              post.image.childImageSharp &&
+              post.image.childImageSharp.fluid && (
                 <Img
-                  alt={`${post.frontmatter.title} cover image`}
+                  alt={`${post.title} cover image`}
                   style={{ height: '100%' }}
-                  fluid={post.frontmatter.image.childImageSharp.fluid}
+                  fluid={post.image.childImageSharp.fluid}
                 />
               )}
           </PostCardImage>
         </Link>
       )}
       <PostCardContent className="post-card-content">
-        <Link className="post-card-content-link" css={PostCardContentLink} to={post.fields.slug}>
+        <Link className="post-card-content-link" css={PostCardContentLink} to={post.slug}>
           <header className="post-card-header">
-            {post.frontmatter.tags && <PostCardTags>{post.frontmatter.tags[0]} / {post.frontmatter.tags[1]}</PostCardTags>}
-            <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
+            {post.tags && <PostCardTags>{post.tags[0]} / {post.tags[1]}</PostCardTags>}
+            <PostCardTitle>{post.title}</PostCardTitle>
           </header>
           <PostCardExcerpt>
             <p>{post.excerpt}</p>
@@ -230,15 +230,15 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
         <PostCardMeta className="post-card-meta">
           <AuthorList>
             <AuthorListItem>
-              <AuthorNameTooltip className="author-name-tooltip">
-                {post.frontmatter.author.id}
-              </AuthorNameTooltip>
-              <Link css={StaticAvatar} to={`/author/${_.kebabCase(post.frontmatter.author.id)}/`}>
+              {/* <AuthorNameTooltip className="author-name-tooltip">
+                {post.author.id}
+              </AuthorNameTooltip> */}
+              {/* <Link css={StaticAvatar} to={`/author/${_.kebabCase(post.author.id)}/`}>
                 <AuthorProfileImage
-                  src={post.frontmatter.author.avatar.children[0].fixed.src}
-                  alt={post.frontmatter.author.id}
+                  src={post.author.avatar.children[0].fixed.src}
+                  alt={post.author.id}
                 />
-              </Link>
+              </Link> */}
             </AuthorListItem>
           </AuthorList>
           <ReadingTime>{post.timeToRead} min read</ReadingTime>
