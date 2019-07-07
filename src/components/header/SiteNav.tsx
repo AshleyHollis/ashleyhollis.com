@@ -12,6 +12,8 @@ import Twitter from '../icons/twitter';
 import SubscribeModal from '../subscribe/SubscribeOverlay';
 import SiteNavLogo from './SiteNavLogo';
 
+const SiteNavHeight = 50;
+
 const HomeNavRaise = css`
   @media (min-width: 900px) {
     position: relative;
@@ -26,7 +28,7 @@ const SiteNavStyles = css`
   justify-content: space-between;
   align-items: flex-start;
   overflow-y: hidden;
-  height: 40px;
+  height: ${SiteNavHeight}px;
   font-size: 1.2rem;
 `;
 
@@ -37,7 +39,6 @@ const SiteNavLeft = styled.div`
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   margin-right: 10px;
-  padding-bottom: 80px;
   letter-spacing: 0.4px;
   white-space: nowrap;
 
@@ -51,21 +52,22 @@ const SiteNavLeft = styled.div`
 
 const NavStyles = css`
   display: flex;
-  margin: 0 0 0 -12px;
-  padding: 0;
   list-style: none;
+  margin: 0px;
+  height: ${SiteNavHeight}px;
 
   li {
+    margin: 0px;
+    padding: 0px;
     display: block;
-    margin: 0;
-    padding: 0;
     text-transform: uppercase;
   }
 
   li a {
+    height: ${SiteNavHeight}px;
+    line-height: ${SiteNavHeight}px;
+    margin: 0px;
     display: block;
-    margin: 0;
-    padding: 10px 12px;
     color: #fff;
     opacity: 0.8;
   }
@@ -80,7 +82,6 @@ const SiteNavRight = styled.div`
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  height: 40px;
 
   @media (max-width: 700px) {
     display: none;
@@ -90,6 +91,7 @@ const SiteNavRight = styled.div`
 const SocialLinks = styled.div`
   flex-shrink: 0;
   display: flex;
+  height: ${SiteNavHeight}px;
   align-items: center;
   a:last-of-type {
     padding-right: 20px;
