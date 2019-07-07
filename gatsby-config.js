@@ -53,8 +53,7 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
-    'gatsby-transformer-yaml',
-    'gatsby-plugin-feed',
+    'gatsby-transformer-yaml',    
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
