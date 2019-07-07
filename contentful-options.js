@@ -9,10 +9,7 @@ require('dotenv').config({
 const { CONTENTFUL_SPACE_ID: spaceId, CONTENTFUL_USE_PREVIEW } = process.env;
 const usePreview = CONTENTFUL_USE_PREVIEW === 'true';
 
-const host = usePreview
-  ? 'preview.contentful.com'
-  : // If `null`, defaults to the Delivery API
-    null;
+const host = usePreview ? 'preview.contentful.com' : 'cdn.contentful.com';
 const accessToken = usePreview
   ? // The Preview API uses a different token than the Delivery API
     process.env.CONTENTFUL_PREVIEW_TOKEN
