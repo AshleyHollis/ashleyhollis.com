@@ -139,6 +139,9 @@ interface PageTemplateProps {
           htmlAst: string
         };
       };
+      image: {      
+        fluid: any;
+      };
     };
     relatedPosts: {
       totalCount: number;
@@ -179,11 +182,9 @@ export interface PageContext {
   excerpt: string;
   timeToRead: number;
     slug: string;
-    image: {
-      childImageSharp: {
+    image: {      
         fluid: any;
       };
-    };
     title: string;
     date: string;
     draft?: boolean;
@@ -237,12 +238,11 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                 </PostFullMeta>
                 <PostFullTitle>{post.title}</PostFullTitle>
               </PostFullHeader>
-
-              {(post.image && post.image.childImageSharp) && (
+              {(post.image && post.image.fluid) && (
                 <PostFullImage>
                   <Img
                     style={{ height: '100%' }}
-                    fluid={post.image.childImageSharp.fluid}
+                    fluid={post.image.fluid}
                   />
                 </PostFullImage>
               )}    
@@ -316,8 +316,8 @@ export const query = graphql`
       title
       tags
       image {
-        file {
-          url
+        fluid {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       body {

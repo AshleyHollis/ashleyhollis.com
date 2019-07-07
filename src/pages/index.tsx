@@ -154,6 +154,9 @@ export const pageQuery = graphql`
             file {
               url
             }
+            fluid {
+              ...GatsbyContentfulFluid_withWebp
+            }
           }
         }
       }
