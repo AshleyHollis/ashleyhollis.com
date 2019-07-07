@@ -70,39 +70,39 @@ export interface HeaderProps {
 }
 
 const Header: React.FunctionComponent<HeaderProps> = props => {
-  const isHome = props.isHome
-  const totalCount = props.totalCount
+  const isHome = props.isHome;
+  const totalCount = props.totalCount;
 
   if (isHome) {
     return (
       <StaticQuery
         query={graphql`
-      query {
-        author: authorYaml {
-          id
-          website
-          twitter
-          bio
-          linkedin
-          github
-          location
-          profile_image {
-            childImageSharp {
-              fluid(maxWidth: 3720) {
-                ...GatsbyImageSharpFluid
+          query {
+            author: authorYaml {
+              id
+              website
+              twitter
+              bio
+              linkedin
+              github
+              location
+              profile_image {
+                childImageSharp {
+                  fluid(maxWidth: 3720) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+              avatar {
+                childImageSharp {
+                  fluid(maxWidth: 200) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
               }
             }
           }
-          avatar {
-            childImageSharp {
-              fluid(maxWidth: 200) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      }
-      `}
+        `}
         render={({ author }) => (
           <header
             className="no-cover"
@@ -206,16 +206,15 @@ const Header: React.FunctionComponent<HeaderProps> = props => {
           </header>
         )}
       />
-    )
-  }
-  else {
+    );
+  } else {
     return (
       <header css={[outer, SiteHeader]}>
         <div css={inner}>
           <SiteNav />
         </div>
       </header>
-    )
+    );
   }
 };
 

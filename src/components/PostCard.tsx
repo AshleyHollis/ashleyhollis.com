@@ -198,28 +198,24 @@ export interface PostCardProps {
 
 const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
   return (
-    <article
-      className={`post-card ${!post.image ? 'no-image' : ''}`}
-      css={PostCardStyles}
-    >
+    <article className={`post-card ${!post.image ? 'no-image' : ''}`} css={PostCardStyles}>
       {post.image && (
         <Link className="post-card-image-link" css={PostCardImageLink} to={post.slug}>
           <PostCardImage className="post-card-image">
-            {post.image &&
-              post.image.fluid && (
-                <Img
-                  alt={`${post.title} cover image`}
-                  style={{ height: '100%' }}
-                  fluid={post.image.fluid}
-                />
-              )}
+            {post.image && post.image.fluid && (
+              <Img
+                alt={`${post.title} cover image`}
+                style={{ height: '100%' }}
+                fluid={post.image.fluid}
+              />
+            )}
           </PostCardImage>
         </Link>
       )}
       <PostCardContent className="post-card-content">
         <Link className="post-card-content-link" css={PostCardContentLink} to={post.slug}>
           <header className="post-card-header">
-            {post.tags && <PostCardTags>{post.tags[0]} / {post.tags[1]}</PostCardTags>}
+            {post.tags && <PostCardTags>{post.tags[0].slug}}</PostCardTags>}
             <PostCardTitle>{post.title}</PostCardTitle>
           </header>
           <PostCardExcerpt>

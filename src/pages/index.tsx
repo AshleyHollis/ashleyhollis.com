@@ -4,13 +4,7 @@ import Footer from '../components/Footer';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
-import {
-  inner,
-  outer,
-  PostFeed,
-  PostFeedRaise,
-  SiteMain,
-} from '../styles/shared';
+import { inner, outer, PostFeed, PostFeedRaise, SiteMain } from '../styles/shared';
 import { PageContext } from './post';
 import Helmet from 'react-helmet';
 import config from '../website-config';
@@ -59,46 +53,16 @@ interface AuthorTemplateProps {
 const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
   const author = props.data.authorYaml;
 
-  const edges = props.data.allContentfulBlogPost.edges.filter(
-    (edge) => {      
-      // return edge.node.frontmatter.author && edge.node.frontmatter.author.id === author.id
-      return true
-    }
-  );
+  const edges = props.data.allContentfulBlogPost.edges.filter(edge => {
+    // return edge.node.frontmatter.author && edge.node.frontmatter.author.id === author.id
+    return true;
+  });
   const totalCount = edges.length;
 
   return (
     <IndexLayout>
-      <Helmet>
-        <html lang={config.lang} />
-        <title>
-          {config.title}
-        </title>
-        <meta name="description" content={author.bio} />
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="profile" />
-        <meta property="og:title" content={`${config.title}`} />
-        <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
-        <meta property="article:publisher" content="https://www.facebook.com/ghost" />
-        <meta property="article:author" content="https://www.facebook.com/ghost" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={`${author.id} - ${config.title}`} />
-        <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {config.twitter && (
-          <meta
-            name="twitter:site"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-        {config.twitter && (
-          <meta
-            name="twitter:creator"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-      </Helmet>
       <Wrapper>
-        <Header isHome={true} totalCount={totalCount}></Header>
+        <Header isHome={true} totalCount={totalCount} />
         <main id="site-main" css={[SiteMain, outer]}>
           <div css={inner}>
             <div css={[PostFeed, PostFeedRaise]}>
@@ -141,15 +105,17 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulBlogPost(            
-      limit: 2000,
-    ) {
+    allContentfulBlogPost(limit: 2000) {
       edges {
         node {
           id
           slug
           title
-          tags
+          tags {
+            ... on ContentfulTag {
+              slug
+            }
+          }
           image {
             file {
               url

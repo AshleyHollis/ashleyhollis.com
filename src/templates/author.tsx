@@ -302,7 +302,11 @@ export const pageQuery = graphql`
         node {
           id
           slug
-          tags
+          tags {
+            ...on ContentfulTag { 
+              slug
+            }
+          }
         }
       }
     }

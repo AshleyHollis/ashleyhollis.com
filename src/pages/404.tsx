@@ -106,7 +106,11 @@ export const pageQuery = graphql`
           id
           slug
           title
-          tags
+          tags {
+            ...on ContentfulTag { 
+              slug
+            }
+          }
           image {
             file {
               url

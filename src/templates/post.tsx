@@ -136,10 +136,10 @@ interface PageTemplateProps {
       timeToRead: string;
       body: {
         childMarkdownRemark: {
-          htmlAst: string
+          htmlAst: string;
         };
       };
-      image: {      
+      image: {
         fluid: any;
       };
     };
@@ -175,30 +175,30 @@ interface PageTemplateProps {
   pageContext: {
     prev: PageContext;
     next: PageContext;
-  };  
+  };
 }
 
 export interface PageContext {
   excerpt: string;
   timeToRead: number;
-    slug: string;
-    image: {      
-        fluid: any;
-      };
-    title: string;
-    date: string;
-    draft?: boolean;
-    tags: string[];
-    author: {
-      id: string;
-      bio: string;
-      avatar: {
-        children: {
-          fixed: {
-            src: string;
-          };
-        }[];
-      };
+  slug: string;
+  image: {
+    fluid: any;
+  };
+  title: string;
+  date: string;
+  draft?: boolean;
+  tags: string[];
+  author: {
+    id: string;
+    bio: string;
+    avatar: {
+      children: {
+        fixed: {
+          src: string;
+        };
+      }[];
+    };
   };
 }
 
@@ -213,7 +213,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
   // }
 
   return (
-    <IndexLayout className="post-template">      
+    <IndexLayout className="post-template">
       <Wrapper css={PostTemplate}>
         <Header isHome={false} totalCount={0} />
         <main id="site-main" className="site-main" css={[SiteMain, outer]}>
@@ -223,29 +223,23 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
             <article css={[PostFull]}>
               <PostFullHeader>
                 <PostFullMeta>
-                  <PostFullMetaDate dateTime={post.date}>
-                    {post.userDate}
-                  </PostFullMetaDate>
-                  {post.tags &&
-                    post.tags.length > 0 && (
-                      <>
-                        <DateDivider>/</DateDivider>
-                        <Link to={`/tags/${_.kebabCase(post.tags[0])}/`}>
-                          {post.tags[0]}
-                        </Link>
-                      </>
-                    )}
+                  <PostFullMetaDate dateTime={post.date}>{post.userDate}</PostFullMetaDate>
+                  {post.tags && post.tags.length > 0 && (
+                    <>
+                      <DateDivider>/</DateDivider>
+                      <Link to={`/tags/${_.kebabCase(post.tags[0].slug)}/`}>
+                        {post.tags[0].slug}
+                      </Link>
+                    </>
+                  )}
                 </PostFullMeta>
                 <PostFullTitle>{post.title}</PostFullTitle>
               </PostFullHeader>
-              {(post.image && post.image.fluid) && (
+              {post.image && post.image.fluid && (
                 <PostFullImage>
-                  <Img
-                    style={{ height: '100%' }}
-                    fluid={post.image.fluid}
-                  />
+                  <Img style={{ height: '100%' }} fluid={post.image.fluid} />
                 </PostFullImage>
-              )}    
+              )}
               <PostContent htmlAst={post.body.childMarkdownRemark.htmlAst} />
 
               {/* The big email subscribe modal content */}
@@ -253,7 +247,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
 
               <PostFullFooter>
                 <AuthorCard author={author} />
-                <PostFullFooterRight authorId= "Ashley Hollis" />
+                <PostFullFooterRight authorId="Ashley Hollis" />
               </PostFullFooter>
             </article>
           </div>
@@ -264,7 +258,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
           <div css={inner}>
             <ReadNextFeed>
               {props.data.relatedPosts && (
-                <ReadNextCard tags={post.tags} relatedPosts={props.data.relatedPosts} />
+                <ReadNextCard tags={post.tags[0].slug} relatedPosts={props.data.relatedPosts} />
               )}
 
               {props.pageContext.prev && <PostCard post={props.pageContext.prev} />}
@@ -281,7 +275,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
 export default PageTemplate;
 
 export const query = graphql`
-  query ($slug: String! $primaryTag: String) {
+  query($slug: String!, $primaryTag: String) {
     authorYaml(id: { eq: "Ashley Hollis" }) {
       id
       website
@@ -305,7 +299,7 @@ export const query = graphql`
         }
       }
     }
-    logo: file(relativePath: {eq: "img/ghost-logo.png"}) {
+    logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
       childImageSharp {
         fixed {
           ...GatsbyImageSharpFixed
@@ -314,7 +308,11 @@ export const query = graphql`
     }
     contentfulBlogPost(slug: { eq: $slug }) {
       title
-      tags
+      tags {
+        ... on ContentfulTag {
+          slug
+        }
+      }
       image {
         fluid {
           ...GatsbyContentfulFluid_withWebp
@@ -325,14 +323,22 @@ export const query = graphql`
           htmlAst
         }
       }
-    }    
-    relatedPosts: allContentfulBlogPost(filter: {tags: {in: [$primaryTag]}}, limit: 3) {
+    }
+    relatedPosts: allContentfulBlogPost(
+      filter: { tags: { elemMatch: { slug: { eq: $primaryTag } } } }
+      limit: 3
+    ) {
       totalCount
       edges {
         node {
           id
           title
           slug
+          tags {
+            ... on ContentfulTag {
+              slug
+            }
+          }
         }
       }
     }

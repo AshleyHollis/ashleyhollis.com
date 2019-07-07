@@ -52,47 +52,20 @@ interface TagTemplateProps {
 }
 
 const Tags: React.FunctionComponent<TagTemplateProps> = props => {
-  const tag = (props.pageContext.tag) ? props.pageContext.tag : "";
+  const tag = props.pageContext.tag ? props.pageContext.tag : '';
   const { edges, totalCount } = props.data.allContentfulBlogPost;
-  const tagData = props.data.allTagYaml.edges.find(
-    n => n.node.id.toLowerCase() === tag.toLowerCase(),
-  );
+
+  const tagData = edges[0].node.tags.find(t => t.slug.toLowerCase() === tag.toLowerCase());
 
   return (
     <IndexLayout>
-      <Helmet>
-        <html lang={config.lang} />
-        <title>
-          {tag} - {config.title}
-        </title>
-        <meta
-          name="description"
-          content={tagData && tagData.node ? tagData.node.description : ''}
-        />
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${tag} - ${config.title}`} />
-        <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
-        {config.facebook && <meta property="article:publisher" content={config.facebook} />}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${tag} - ${config.title}`} />
-        <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {config.twitter && (
-          <meta
-            name="twitter:site"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-      </Helmet>
       <Wrapper>
         <header
-          className={`${tagData && tagData.node.image ? '' : 'no-cover'}`}
+          className={`${tagData && tagData.image ? '' : 'no-cover'}`}
           css={[outer, SiteHeader]}
           style={{
             backgroundImage:
-              tagData && tagData.node.image
-                ? `url('${tagData.node.image.childImageSharp.fluid.src}')`
-                : '',
+              tagData && tagData.image ? `url('${tagData.image.childImageSharp.fluid.src}')` : '',
           }}
         >
           <div css={inner}>
@@ -100,8 +73,8 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
             <SiteHeaderContent>
               <SiteTitle>{tag}</SiteTitle>
               <SiteDescription>
-                {tagData && tagData.node.description ? (
-                  tagData.node.description
+                {tagData && tagData.description ? (
+                  tagData.description
                 ) : (
                   <>
                     A collection of {totalCount > 1 && `${totalCount} posts`}
@@ -132,35 +105,14 @@ export default Tags;
 
 export const pageQuery = graphql`
   query($tag: String) {
-    allTagYaml {
-      edges {
-        node {
-          id
-          description
-          image {
-            childImageSharp {
-              fluid(maxWidth: 3720) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      }
-    }
-    allContentfulBlogPost(
-      limit: 2000      
-      filter: { tags: { in: [$tag] } }
-    ) {
+    allContentfulBlogPost(filter: { tags: { elemMatch: { slug: { eq: $tag } } } }) {
       totalCount
       edges {
         node {
-          id
           slug
-          title
-          tags
-          image {
-            file {
-              url
+          tags {
+            ... on ContentfulTag {
+              slug
             }
           }
         }
