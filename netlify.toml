@@ -1,0 +1,5 @@
+# Settings for `develop` branch deploys.
+# If your target branch is named something else,
+# the context will be "context.<NAME>.environment".
+[context.develop.environment]
+  CONTENTFUL_USE_PREVIEW = "true"

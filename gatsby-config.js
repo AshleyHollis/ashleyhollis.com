@@ -1,11 +1,5 @@
 const path = require('path');
-const dotenv = require('dotenv');
-
-if (process.env.ENVIRONMENT !== 'production') {
-  dotenv.config();
-}
-
-const { spaceId, accessToken } = process.env;
+const contentfulOptions = require('./contentful-options');
 
 module.exports = {
   siteMetadata: {
@@ -60,7 +54,7 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
-    'gatsby-transformer-yaml',    
+    'gatsby-transformer-yaml',
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
@@ -87,10 +81,7 @@ module.exports = {
     },
     {
       resolve: 'gatsby-source-contentful',
-      options: {
-        spaceId,
-        accessToken
-      }
+      options: contentfulOptions,
     },
   ],
 };
