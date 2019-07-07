@@ -29,7 +29,7 @@ interface AuthorTemplateProps {
         fluid: any;
       };
     };
-    allMarkdownRemark: {
+    allContentfulBlogPost: {
       totalCount: number;
       edges: {
         node: PageContext;
@@ -59,11 +59,10 @@ interface AuthorTemplateProps {
 const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
   const author = props.data.authorYaml;
 
-  const edges = props.data.allMarkdownRemark.edges.filter(
-    (edge) => {
-      const isDraft = (edge.node.frontmatter.draft !== true ||
-        process.env.NODE_ENV === 'development')
-      return isDraft && edge.node.frontmatter.author && edge.node.frontmatter.author.id === author.id
+  const edges = props.data.allContentfulBlogPost.edges.filter(
+    (edge) => {      
+      // return edge.node.frontmatter.author && edge.node.frontmatter.author.id === author.id
+      return true
     }
   );
   const totalCount = edges.length;
@@ -104,7 +103,7 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
           <div css={inner}>
             <div css={[PostFeed, PostFeedRaise]}>
               {edges.map(({ node }) => {
-                return <PostCard key={node.fields.slug} post={node} />;
+                return <PostCard key={node.slug} post={node} />;
               })}
             </div>
           </div>
@@ -142,44 +141,22 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(
-      filter: { frontmatter: { draft: { ne: true } } },
-      sort: { fields: [frontmatter___date], order: DESC },
+    allContentfulBlogPost(            
       limit: 2000,
     ) {
       edges {
         node {
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            tags
-            date
-            draft
-            image {
-              childImageSharp {
-                fluid(maxWidth: 3720) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          id
+          slug
+          title
+          tags
+          image {
+            file {
+              url
             }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fixed(quality: 90) {
-                      src
-                    }
-                  }
-                }
-              }
+            fluid {
+              ...GatsbyContentfulFluid_withWebp
             }
-          }
-          fields {
-            layout
-            slug
           }
         }
       }

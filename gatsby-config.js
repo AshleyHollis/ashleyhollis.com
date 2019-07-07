@@ -1,4 +1,11 @@
 const path = require('path');
+const dotenv = require('dotenv');
+
+if (process.env.ENVIRONMENT !== 'production') {
+  dotenv.config();
+}
+
+const { spaceId, accessToken } = process.env;
 
 module.exports = {
   siteMetadata: {
@@ -53,8 +60,7 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
-    'gatsby-transformer-yaml',
-    'gatsby-plugin-feed',
+    'gatsby-transformer-yaml',    
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
@@ -78,6 +84,13 @@ module.exports = {
         // Determines how often site speed tracking beacons will be sent
         siteSpeedSampleRate: 10,
       },
+    },
+    {
+      resolve: 'gatsby-source-contentful',
+      options: {
+        spaceId,
+        accessToken
+      }
     },
   ],
 };
