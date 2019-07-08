@@ -13,7 +13,6 @@ import {
   inner,
   outer,
   PostFeed,
-  PostFeedRaise,
   SiteHeader,
   SiteHeaderContent,
   SiteTitle,
@@ -114,14 +113,11 @@ interface AuthorTemplateProps {
 
 const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
   const author = props.data.authorYaml;
-  
-  const edges = props.data.allContentfulBlogPost.edges.filter(
-    (edge) => {
-      const isDraft = (edge.node.draft !== true ||
-        process.env.NODE_ENV === 'development')
-      return isDraft && edge.node.author && edge.node.author.id === author.id
-    }
-  );
+
+  const edges = props.data.allContentfulBlogPost.edges.filter(edge => {
+    const isDraft = edge.node.draft !== true || process.env.NODE_ENV === 'development';
+    return isDraft && edge.node.author && edge.node.author.id === author.id;
+  });
   const totalCount = edges.length;
 
   return (
@@ -303,12 +299,12 @@ export const pageQuery = graphql`
           id
           slug
           tags {
-            ...on ContentfulTag { 
+            ... on ContentfulTag {
               slug
             }
           }
         }
       }
     }
-  }    
+  }
 `;

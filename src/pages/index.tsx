@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
-import { inner, outer, PostFeed, PostFeedRaise, SiteMain } from '../styles/shared';
+import { inner, outer, PostFeed, SiteMain } from '../styles/shared';
 import { PageContext } from './post';
 import Header from '../components/header/Header';
 
@@ -57,7 +57,7 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
         <Header isHome={true} totalCount={totalCount} />
         <main id="site-main" css={[SiteMain, outer]}>
           <div css={inner}>
-            <div css={[PostFeed, PostFeedRaise]}>
+            <div css={[PostFeed]}>
               {edges.map(({ node }) => {
                 return <PostCard key={node.slug} post={node} />;
               })}
