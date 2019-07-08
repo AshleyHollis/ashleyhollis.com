@@ -1,13 +1,10 @@
-import { graphql } from 'gatsby';
 import React from 'react';
 import Footer from '../components/Footer';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
-import { inner, outer, PostFeed, PostFeedRaise, SiteMain } from '../styles/shared';
+import { inner, outer, PostFeed, SiteMain } from '../styles/shared';
 import { PageContext } from './post';
-import Helmet from 'react-helmet';
-import config from '../website-config';
 import Header from '../components/header/Header';
 
 interface AuthorTemplateProps {
@@ -51,12 +48,7 @@ interface AuthorTemplateProps {
 }
 
 const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
-  const author = props.data.authorYaml;
-
-  const edges = props.data.allContentfulBlogPost.edges.filter(edge => {
-    // return edge.node.frontmatter.author && edge.node.frontmatter.author.id === author.id
-    return true;
-  });
+  const edges = props.data.allContentfulBlogPost.edges;
   const totalCount = edges.length;
 
   return (
@@ -65,7 +57,7 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
         <Header isHome={true} totalCount={totalCount} />
         <main id="site-main" css={[SiteMain, outer]}>
           <div css={inner}>
-            <div css={[PostFeed, PostFeedRaise]}>
+            <div css={[PostFeed]}>
               {edges.map(({ node }) => {
                 return <PostCard key={node.slug} post={node} />;
               })}
@@ -93,7 +85,7 @@ export const pageQuery = graphql`
       profile_image {
         childImageSharp {
           fluid(maxWidth: 3720) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }
       }

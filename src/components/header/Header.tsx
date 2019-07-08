@@ -83,7 +83,7 @@ const Header: React.FunctionComponent<HeaderProps> = props => {
         profile_image {
           childImageSharp {
             fluid(maxWidth: 3720) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
         }
