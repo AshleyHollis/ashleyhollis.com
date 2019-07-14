@@ -47,7 +47,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://quentin-monmousseau.netlify.com',
+        siteUrl: 'https://ashleyhollis.com',
       },
     },
     'gatsby-plugin-emotion',
