@@ -5,7 +5,7 @@ const config = {
   siteMetadata: {
     title: 'Ashley Hollis',
     description: 'A blog about Software Development',
-    siteUrl: 'https://AshleyHollis.com', // full path to blog - no ending slash
+    siteUrl: 'https://www.AshleyHollis.com', // full path to blog - no ending slash
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
@@ -48,7 +48,7 @@ const config = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://ashleyhollis.com',
+        siteUrl: 'https://www.AshleyHollis.com',
       },
     },
     'gatsby-plugin-emotion',
