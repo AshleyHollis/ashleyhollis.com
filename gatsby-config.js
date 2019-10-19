@@ -1,7 +1,7 @@
 const path = require('path');
 const contentfulOptions = require('./contentful-options');
 
-module.exports = {
+const config = {
   siteMetadata: {
     title: 'Ashley Hollis',
     description: 'A blog about Software Development',
@@ -62,21 +62,27 @@ module.exports = {
         postCssPlugins: [require('postcss-color-function'), require('cssnano')()],
       },
     },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-150352607-1',
-        // Puts tracking script in the head instead of the body
-        head: true,
-        // IP anonymization for GDPR compliance
-        anonymize: true,
-        // Disable analytics for users with `Do Not Track` enabled
-        respectDNT: true,
-      },
-    },
+
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulOptions,
     },
   ],
 };
+
+if (process.env.CONTEXT === 'production') {
+  config.plugins.push({
+    resolve: `gatsby-plugin-google-analytics`,
+    options: {
+      trackingId: 'UA-150352607-1',
+      // Puts tracking script in the head instead of the body
+      head: true,
+      // IP anonymization for GDPR compliance
+      anonymize: true,
+      // Disable analytics for users with `Do Not Track` enabled
+      respectDNT: true,
+    },
+  });
+}
+
+module.exports = config;
